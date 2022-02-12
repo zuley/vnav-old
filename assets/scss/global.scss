@@ -1,0 +1,21 @@
+* {
+  padding: 0; margin: 0; list-style: none;
+  text-decoration: none;
+}
+
+html, body {
+  background-color: #fff;
+  font-size: 12px; font-weight: normal;
+  font-family: PingFang SC;
+  line-height: 17px;
+  color: #000;
+}
+
+body {
+  --themeColor: #3D5CFF;
+}
+
+.g-wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+}
