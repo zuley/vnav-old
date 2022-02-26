@@ -11,7 +11,7 @@
 <style lang="scss">
 .m-header {
   padding: 20px 0;
-  background-color: #eee;
+  background-color: #3295d9;
   .g-wrap {
     display: flex;
     >.logo {
