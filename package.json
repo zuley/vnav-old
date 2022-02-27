@@ -9,6 +9,7 @@
     "nuxt3": "^3.0.0-27388331.8ea6b65"
   },
   "dependencies": {
+    "ant-design-vue": "^2.2.8",
     "sass": "^1.49.0"
   }
 }
