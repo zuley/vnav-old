@@ -1,11 +1,15 @@
+<script lang="ts" setup>
+
+const NavList = await useClassify()
+const handleNav = (item) => {
+  console.log('点击导航')
+}
+</script>
+
 <template>
   <div class="m-anchor">
     <ul>
-      <li>热门推荐</li>
-      <li class="active">热门推荐</li>
-      <li>热门推荐</li>
-      <li>热门推荐</li>
-      <li>热门推荐</li>
+      <li v-for="item in NavList" @click="handleNav(item)">{{ item.name }}</li>
     </ul>
   </div>
 </template>

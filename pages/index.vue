@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-// import PageHeader from '~~/components/PageHeader.vue';
-// import Anchor, { AnchorLink } from 'ant-design-vue/lib/anchor'
-// import 'ant-design-vue/lib/anchor/style'
+const NavList = await useClassify()
 </script>
 <template>
   <div class="p-home">
@@ -10,7 +8,7 @@
     <div class="m-main g-wrap">
       <Anchor />
       <div class="box">
-        <PartNav />
+        <PartNav v-for="item in NavList" :key="item._id" :classify="item" />
       </div>
     </div>
   </div>

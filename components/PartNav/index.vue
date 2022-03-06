@@ -1,8 +1,14 @@
+<script setup lang="ts">
+import { Classify } from '~/api/nav';
+
+const classify = defineProps<Classify>()
+
+</script>
 <template>
   <div class="m-partNav">
     <div class="head">
-      <h2>热门推荐</h2>
-      <nuxt-link class="more" to="#" target="_blank">更多</nuxt-link>
+      <h2>{{ classify.name }}</h2>
+      <nuxt-link class="more" :to="`/classify/${classify.slug}`" target="_blank">更多</nuxt-link>
     </div>
     <div class="body">
       <PartNavLink
@@ -20,6 +26,7 @@
 .m-partNav {
   background-color: #fff;
   border-radius: 10px;
+  margin-bottom: 30px;
   >.head {
     border-bottom: 1px solid #ddd;
     padding: 0 20px;
