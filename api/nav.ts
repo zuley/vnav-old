@@ -10,5 +10,33 @@ export type Classify = {
 }
 
 export async function getClassify () {
-  return await useAsyncData<ResData<Classify>>('getClassify', () => $fetch(URL.nav.classify, ReqData))
+  return await useAsyncData<ResData<Classify>>('getClassify', () => $fetch(URL.nav.classify, {
+    ...ReqData,
+  }))
+}
+
+
+type NavData = {
+  _id: string
+  url: string
+  name: string
+  icon: string
+  desc: string
+  classify: Classify
+}
+export async function getNav (classify: string) {
+  return await useAsyncData<ResData<NavData>>(`getNav-${classify}`, () => $fetch(URL.nav.list, {
+    method: "POST",
+    body: {
+      limit: 20,
+      query: {
+        "classify": {
+          "$eq": classify
+        }
+      }
+    },
+    headers: {
+      "Content-Type": "application/json",
+    }
+  }))
 }

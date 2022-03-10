@@ -4,6 +4,7 @@ export default {
     Menu: 'http://cms.zuley.xyz/juanwang/v1.0/Menu/', 
   },
   nav: {
-    classify: 'http://cms.zuley.xyz/juanwang/v1.0/classify'
+    classify: 'http://cms.zuley.xyz/juanwang/v1.0/classify',
+    list: 'http://cms.zuley.xyz/juanwang/v1.0/nav/find',
   }
 }

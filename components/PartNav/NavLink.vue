@@ -3,20 +3,19 @@ import { defineProps } from 'vue'
 const Nav = defineProps<{
   title: string;
   url: string;
-  target: string;
   desc: string;
   icon: string;
 }>()
 </script>
 <template>
   <div class="m-navlink">
-    <nuxt-link :to="url">
+    <a :href="url" target="_blank">
       <div class="icon"><img :src="icon" :alt="title"></div>
       <div class="box">
         <h3>{{ title }}</h3>
         <div class="desc">{{ desc }}</div>
       </div>
-    </nuxt-link>
+    </a>
   </div>
 </template>
 
@@ -29,6 +28,7 @@ const Nav = defineProps<{
       width: 26px;
       height: 26px;
       border-radius: 100%;
+      padding-top: 3px;
       img {
         display: block;
         width: 100%;

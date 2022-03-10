@@ -5,6 +5,6 @@ export interface ResData<T> {
 
 export const ReqData = {
   params: {
-    limit: 10
+    limit: 20
   }
 }

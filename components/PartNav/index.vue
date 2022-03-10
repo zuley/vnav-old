@@ -1,22 +1,29 @@
 <script setup lang="ts">
-import { Classify } from '~/api/nav';
+import { Classify, getNav } from '~/api/nav';
 
-const classify = defineProps<Classify>()
+const Props = defineProps<{
+  classify: Classify
+}>()
+
+const navRes = await getNav(Props.classify._id)
+const navList = navRes.data.value.data
 
 </script>
 <template>
   <div class="m-partNav">
     <div class="head">
       <h2>{{ classify.name }}</h2>
+      <div class="tips">{{ classify.desc }}</div>
       <nuxt-link class="more" :to="`/classify/${classify.slug}`" target="_blank">更多</nuxt-link>
     </div>
     <div class="body">
       <PartNavLink
-        title="测试标题"
-        desc="测试描述"
-        url="#"
-        icon="tttt"
-        target="_blank"
+        v-for="item in navList"
+        :key="item._id"
+        :title="item.name"
+        :desc="item.desc"
+        :url="item.url"
+        :icon="item.icon"
       />
     </div>
   </div>
@@ -36,6 +43,20 @@ const classify = defineProps<Classify>()
     >h2 {
       font-size: 16px;
       font-weight: normal;
+    }
+    >.tips {
+      flex: 1;
+      padding-left: 20px;
+      color: #999;
+    }
+  }
+  >.body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px 10px;
+    .m-navlink {
+      width: 200px;
     }
   }
 }
