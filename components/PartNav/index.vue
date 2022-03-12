@@ -10,7 +10,7 @@ const navList = navRes.data.value.data
 
 </script>
 <template>
-  <div class="m-partNav">
+  <div class="m-partNav" :id="classify.slug">
     <div class="head">
       <h2>{{ classify.name }}</h2>
       <div class="tips">{{ classify.desc }}</div>
@@ -34,6 +34,7 @@ const navList = navRes.data.value.data
   background-color: #fff;
   border-radius: 10px;
   margin-bottom: 30px;
+  overflow: hidden;
   >.head {
     border-bottom: 1px solid #ddd;
     padding: 0 20px;
@@ -53,7 +54,7 @@ const navList = navRes.data.value.data
   >.body {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 20px 10px;
     .m-navlink {
       width: 200px;

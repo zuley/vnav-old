@@ -16,10 +16,16 @@ const NavList = await useClassify()
 
 <style lang="scss">
 .m-main {
-  display: flex;
+  >:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  >.m-anchor {
+    float: left;
+  }
   >.box {
-    flex: 1;
-    margin-left: 20px;
+    margin-left: 120px;
   }
 }
 </style>

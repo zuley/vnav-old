@@ -1,8 +1,14 @@
 <script lang="ts" setup>
+import { Classify } from '~~/api/nav';
+
 
 const NavList = await useClassify()
-const handleNav = (item) => {
-  console.log('点击导航')
+const handleNav = (item: Classify) => {
+  const dom: any = document.querySelector(`#${item.slug}`)
+  window.scrollTo({
+    top: dom.offsetTop - 20,
+    behavior: 'smooth'
+  })
 }
 </script>
 
@@ -17,6 +23,7 @@ const handleNav = (item) => {
 <style lang="scss">
 .m-anchor {
   position: sticky;
+  top: 20px;
   width: 100px;
   ul {
     background-color: #fff;
