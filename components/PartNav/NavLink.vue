@@ -21,9 +21,17 @@ const Nav = defineProps<{
 
 <style lang="scss">
 .m-navlink {
+  width: 200px;
+  height: 80px;
   a {
     display: flex;
     padding: 10px;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+    &:hover {
+      background-color: #f2f2f2;
+    }
     .icon {
       width: 26px;
       height: 26px;

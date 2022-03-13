@@ -20,8 +20,14 @@ const globalReqData = {
   }
 }
 
+export interface MenuData {
+  name: string
+  url: string
+  target: boolean
+}
+
 export async function getMenus () {
-  return await useFetch(URL.global.Menu, globalReqData)
+  return await useAsyncData<ResOptionData<MenuData>>('global-menu', () => $fetch(URL.global.menu, globalReqData))
 }
 
 export async function getOptions () {

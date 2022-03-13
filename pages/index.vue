@@ -1,10 +1,17 @@
 <script lang="ts" setup>
+const opt = useOptions()
+useMeta({
+  title: `${opt.get('site-name')}-${opt.get('site-subtitle')}`,
+  meta: [
+    { name: 'description', content: opt.get('site-description') },
+    { name: 'keywords', content: opt.get('site-keys') }
+  ]
+})
+
 const NavList = await useClassify()
 </script>
 <template>
   <div class="p-home">
-    <PageHeader />
-    <!-- <HotRecommended /> -->
     <div class="m-main g-wrap">
       <Anchor />
       <div class="box">

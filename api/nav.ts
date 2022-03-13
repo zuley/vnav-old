@@ -15,6 +15,19 @@ export async function getClassify () {
   }))
 }
 
+export async function getClassifyBySlug (slug: string) {
+  return await useAsyncData<ResData<Classify>>(`getClassify-${slug}`, () => $fetch(URL.nav.getClassifyBySlug, {
+    method: "POST",
+    body: {
+      query: {
+        'slug': {
+          '$eq': slug
+        }
+      }
+    }
+  }) )
+}
+
 
 type NavData = {
   _id: string

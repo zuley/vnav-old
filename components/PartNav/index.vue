@@ -14,7 +14,7 @@ const navList = navRes.data.value.data
     <div class="head">
       <h2>{{ classify.name }}</h2>
       <div class="tips">{{ classify.desc }}</div>
-      <nuxt-link class="more" :to="`/classify/${classify.slug}`" target="_blank">更多</nuxt-link>
+      <nuxt-link class="more" :to="`/classify/${classify.slug}`">更多</nuxt-link>
     </div>
     <div class="body">
       <PartNavLink
@@ -49,6 +49,12 @@ const navList = navRes.data.value.data
       flex: 1;
       padding-left: 20px;
       color: #999;
+    }
+    >.more {
+      color: #666;
+      &:hover {
+        color: #f00;
+      }
     }
   }
   >.body {
