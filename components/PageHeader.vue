@@ -17,7 +17,7 @@ const opt = useOptions()
       </NuxtLink>
     </div>
     <ul class="menu">
-      <li v-for="item in menuList">
+      <li v-for="item in menuList" :key="item.name">
         <NuxtLink :to="item.url">{{ item.name }}</NuxtLink>
       </li>
     </ul>
@@ -70,10 +70,10 @@ const opt = useOptions()
         transition: all .4s ease;
         &:hover {
           background-color: #f2f2f2;
-          color: #009dff;
+          color: var(--global-theme-color);
         }
         &.router-link-active {
-          color: #009dff;
+          color: var(--global-theme-color);
         }
       }
     }

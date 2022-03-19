@@ -7,5 +7,11 @@ export default {
     classify: 'http://cms.zuley.xyz/juanwang/v1.0/classify',
     getClassifyBySlug: 'http://cms.zuley.xyz/juanwang/v1.0/classify/find',
     list: 'http://cms.zuley.xyz/juanwang/v1.0/nav/find',
+  },
+  weekly: {
+    list: 'http://cms.zuley.xyz/juanwang/v1.0/weekly'
+  },
+  article: {
+
   }
 }

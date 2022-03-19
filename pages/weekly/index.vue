@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { getWeeklyList } from '~/api/weekly'
 const title = '前端周刊'
 const desc = '每周一期优秀前端技术文章推荐，让每一个前端 er 可以快速学习。'
 const opt = useOptions()
@@ -9,6 +10,9 @@ useMeta({
     { name: 'keywords', content: '前端周刊,前端技术文章推荐,技术文章' }
   ]
 })
+const weekRes = await getWeeklyList()
+const weekly = weekRes.data.value.data
+console.log('weekly', weekly)
 </script>
 <template>
   <div class="p-weekly">
