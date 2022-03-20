@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "ant-design-vue": "^2.2.8",
+    "dayjs": "^1.11.0",
     "sass": "^1.49.0"
   }
 }

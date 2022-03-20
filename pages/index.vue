@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 const opt = useOptions()
-console.log('ooo', opt)
 useMeta({
   title: `${opt.get('site-name')}-${opt.get('site-subtitle')}`,
   meta: [

@@ -8,6 +8,7 @@ type Article = {
   title: string
   _createTime: number
   _id: string
+  tags: string[]
 }
 type Weekly = {
   thumb: string
@@ -15,6 +16,7 @@ type Weekly = {
   _createTime: number
   _id: string
   articles: Article[]
+  desc: string
 }
 export async function getWeeklyList () {
   return await useAsyncData<ResData<Weekly>>('weekly', () => $fetch(urlConfig.weekly.list, {
@@ -22,4 +24,8 @@ export async function getWeeklyList () {
       limit: 10
     }
   }))
+}
+
+export async function getWeeklySingle (id: string) {
+  return await useAsyncData<{ data: Weekly }>(`weekly-${id}`, () => $fetch(urlConfig.weekly.list + id))
 }

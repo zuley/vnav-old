@@ -1,43 +1,69 @@
+<script lang="ts" setup>
+import dayjs from 'dayjs'
+import { getWeeklySingle, getWeeklyList } from '~/api/weekly'
+
+const weeklyId = useRoute().params.id
+const weeklyRes = await getWeeklySingle(weeklyId as string)
+const weekly = weeklyRes.data.value.data
+
+const weeklyListRes = await getWeeklyList()
+const weeklys = weeklyListRes.data.value.data
+
+const opt = useOptions()
+useMeta({
+  title: `${weekly.title}-${opt.get('site-name')}`,
+  meta: [
+    { name: 'description', content: weekly.desc },
+    { name: 'keywords', content: weekly.desc }
+  ]
+})
+
+</script>
+
 <template>
   <div class="p-weeklySingle">
     <!-- 背景 -->
-    <div class="bg"><img src="https://images.uiiiuiii.com/wp-content/uploads/2022/02/bd-fm220226-5-6.jpg" alt=""></div>
+    <div class="bg"><img :src="weekly.thumb" :alt="weekly.title"></div>
     <!-- 头部卡片 -->
     <div class="header g-wrap">
-      <div class="thumb"><img src="https://images.uiiiuiii.com/wp-content/uploads/2022/02/bd-fm220226-5-6.jpg" alt=""></div>
+      <div class="thumb"><img :src="weekly.thumb" :alt="weekly.title"></div>
       <div class="box">
-        <h1>2022年-第一期：调用链推荐第一期：调用链推荐第</h1>
+        <h1>{{ weekly.title }}</h1>
         <div class="meta">
-          <div class="item"><span>16</span>篇文章</div>
+          <div class="item"><span>{{ weekly.articles.length }}</span>篇文章</div>
           <div class="item"><span>27633</span>人学习</div>
         </div>
-        <div class="desc">本专题由「超人的电话亭」撰写，包括最经典常用的19条UX设计理论，每一条理论都包括概述、设计案例和注意事项3个部分，保证看完后能不仅能掌握定义，更能运用到实际产品设计中。</div>
+        <div class="desc">{{ weekly.desc }}</div>
         <div class="info">
-          <div class="item">2022年2月28日更新</div>
+          <div class="item">{{ dayjs(weekly._createTime).fromNow() }} 更新</div>
         </div>
       </div>
     </div>
     <!-- 文章列表 -->
     <div class="content g-wrap">
       <div class="posts">
-        <div class="m-post" v-for="item in 6">
+        <div class="m-post" v-for="article in weekly.articles">
           <h2 class="title">
-            <nuxt-link to="#" class="tag">Vue</nuxt-link>
-            <a class="name" href="#" target="_blank">让设计更有说服力的20条经典原则：美即好用</a>
+            <nuxt-link
+              v-for="tag in article.tags"
+              :to="{ path: '/weekly', query: { tag: tag } }"
+              class="tag"
+            >{{ tag }}</nuxt-link>
+            <a class="name" :href="article.link" target="_blank">{{ article.title }}</a>
           </h2>
-          <div class="desc">当老板问你为什么要用这个动效时，拿出经典的「多尔蒂门槛」法则，让 TA 知道你的设计是有理有据的！</div>
+          <div class="desc">{{ article.recommend }}</div>
           <div class="meta">
-            <div class="item">来源：掘金</div>
-            <div class="item">推荐时间：2019-04-24</div>
+            <div class="item">来源：{{ article.source }}</div>
+            <div class="item">推荐时间：{{ dayjs(article._createTime).fromNow() }}</div>
           </div>
         </div>
       </div>
       <div class="news">
         <h3>最新周刊</h3>
-        <div class="item" v-for="item in 6">
-          <nuxt-link to="#">
-            <div class="thumb"><img src="https://images.uiiiuiii.com/wp-content/uploads/2022/02/bd-fm220226-5-6.jpg" alt=""></div>
-            <h4>让设计更有说服力的20条经典原则：美即好用</h4>
+        <div class="item" v-for="weekly in weeklys">
+          <nuxt-link :to="`/article/${weekly._id}`">
+            <div class="thumb"><img :src="weekly.thumb" :alt="weekly.title"></div>
+            <h4>{{ weekly.title }}</h4>
           </nuxt-link>
         </div>
       </div>
@@ -134,7 +160,7 @@
             padding: 5px 10px;
             border-radius: 5px;
             margin-right: 10px;
-            font-size: 14px;
+            font-size: 12px;
             transition: all .3s ease;
             &:hover {
               opacity: 1;
@@ -176,12 +202,14 @@
       >.item {
         padding: 10px 20px;
         &:hover {
-          background-color: #f2f2f2;
+          background-color: #f8f8f8;
         }
         a {
           display: flex;
           .thumb {
-            width: 100px;
+            width: 40px;
+            height: 40px;
+            overflow: hidden;
             margin-right: 10px;
             img {
               display: block;

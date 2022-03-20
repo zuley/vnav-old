@@ -17,7 +17,6 @@ const actTab = computed(() => {
 })
 const keywords = ref('')
 const handleSearch = () => {
-  console.log('???')
   if (keywords.value === '') {
     alert('请输入关键字')
     return
