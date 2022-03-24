@@ -12,6 +12,6 @@ export default {
     list: 'http://cms.zuley.xyz/juanwang/v1.0/weekly/'
   },
   article: {
-
+    list: 'http://cms.zuley.xyz/juanwang/v1.0/article-post/'
   }
 }

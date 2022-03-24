@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { getArticleList } from '~/api/article'
+import dayjs from 'dayjs'
 const title = '前端技术'
 const desc = '汇集各大社区优秀技术文章推荐，助力前端 er 快速学习。'
 const opt = useOptions()
@@ -9,6 +11,8 @@ useMeta({
     { name: 'keywords', content: '前端技术,前端技术文章推荐,技术文章' }
   ]
 })
+const articleRes = await getArticleList()
+const articles = articleRes.data.value.data
 </script>
 <template>
   <div class="p-articleList">
@@ -24,15 +28,15 @@ useMeta({
       </div>
     </div>
     <div class="box g-wrap">
-      <div class="m-post" v-for="item in 6">
+      <div class="m-post" v-for="article in articles">
         <h2 class="title">
           <nuxt-link to="#" class="tag">Vue</nuxt-link>
-          <a class="name" href="#" target="_blank">让设计更有说服力的20条经典原则：美即好用</a>
+          <a class="name" :href="article.link" target="_blank">{{ article.title }}</a>
         </h2>
-        <div class="desc">当老板问你为什么要用这个动效时，拿出经典的「多尔蒂门槛」法则，让 TA 知道你的设计是有理有据的！</div>
+        <div class="desc">{{ article.recommend }}</div>
         <div class="meta">
-          <div class="item">来源：掘金</div>
-          <div class="item">推荐时间：2019-04-24</div>
+          <div class="item">来源：{{ article.source }}</div>
+          <div class="item">推荐时间：{{ dayjs(article._createTime).fromNow() }}</div>
         </div>
       </div>
     </div>
@@ -120,6 +124,9 @@ useMeta({
       box-sizing: border-box;
       >.title {
         margin-bottom: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         .tag {
           color: #fff;
           background-color: #666;
