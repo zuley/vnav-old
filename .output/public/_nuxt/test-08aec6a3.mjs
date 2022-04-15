@@ -1,0 +1,1 @@
+import{_ as t,o as s,c as o,E as a,g as c}from"./entry-ca1b192b.mjs";const r={},n={class:"l-default"},_=c(" 233 ");function d(e,l){return s(),o("div",n,[_,a(e.$slots,"default")])}var i=t(r,[["render",d]]);export{i as default};
