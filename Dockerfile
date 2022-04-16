@@ -1,7 +1,6 @@
 FROM node:alpine
-ENV NODE_ENV=production
 WORKDIR /usr/src/app
 COPY . /usr/src/app/
-RUN yarn
+RUN yarn && yarn build
 EXPOSE 3000
 CMD ["yarn", "start"]

@@ -10,4 +10,4 @@ export default defineNuxtConfig({
     global: true,
     dirs: ['~/components']
   }
-} as any,)
+})
