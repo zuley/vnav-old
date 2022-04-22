@@ -1,7 +1,7 @@
 export default {
   global: {
     options: 'http://cms.zuley.xyz/juanwang/v1.0/setting/',
-    menu: 'http://cms.zuley.xyz/juanwang/v1.0/menu/', 
+    menu: '/api/global/menu', 
   },
   nav: {
     classify: 'http://cms.zuley.xyz/juanwang/v1.0/classify/',

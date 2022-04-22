@@ -6,10 +6,11 @@
     "start": "HOST=0.0.0.0 node .output/server/index.mjs"
   },
   "devDependencies": {
-    "nuxt3": "^3.0.0-27388331.8ea6b65"
+    "nuxt": "npm:nuxt3@latest"
   },
   "dependencies": {
     "ant-design-vue": "^2.2.8",
+    "apicache": "^1.6.3",
     "dayjs": "^1.11.0",
     "sass": "^1.49.0"
   }
