@@ -10,7 +10,7 @@ const weeklyListRes = await getWeeklyList()
 const weeklys = weeklyListRes.data.value.data
 
 const opt = useOptions()
-useMeta({
+useHead({
   title: `${weekly.title}-${opt.get('site-name')}`,
   meta: [
     { name: 'description', content: weekly.desc },

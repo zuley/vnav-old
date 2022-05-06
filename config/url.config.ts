@@ -1,17 +1,17 @@
 export default {
   global: {
-    options: 'http://cms.zuley.xyz/juanwang/v1.0/setting/',
+    options: '/api/global/options',
     menu: '/api/global/menu', 
   },
   nav: {
-    classify: 'http://cms.zuley.xyz/juanwang/v1.0/classify/',
-    getClassifyBySlug: 'http://cms.zuley.xyz/juanwang/v1.0/classify/find',
-    list: 'http://cms.zuley.xyz/juanwang/v1.0/nav/find',
+    classify: '/api/nav/classify',
+    getClassifyBySlug: '/api/nav/getClassifyBySlug',
+    list: '/api/nav/list',
   },
   weekly: {
-    list: 'http://cms.zuley.xyz/juanwang/v1.0/weekly/'
+    list: '/api/weekly/list'
   },
   article: {
-    list: 'http://cms.zuley.xyz/juanwang/v1.0/article-post/'
+    list: '/api/article/list'
   }
 }

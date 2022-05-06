@@ -7,7 +7,7 @@ const navRes = await getNav(classify._id)
 const navList = navRes.data.value.data
 
 const opt = useOptions()
-useMeta({
+useHead({
   title: `${classify.name}-${opt.get('site-name')}-${opt.get('site-subtitle')}`,
   meta: [
     { name: 'description', content: classify.desc },

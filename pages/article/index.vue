@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 const title = '前端技术'
 const desc = '汇集各大社区优秀技术文章推荐，助力前端 er 快速学习。'
 const opt = useOptions()
-useMeta({
+useHead({
   title: `${title}-${opt.get('site-name')}-${opt.get('site-subtitle')}`,
   meta: [
     { name: 'description', content: desc },

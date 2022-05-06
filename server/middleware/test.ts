@@ -4,7 +4,7 @@ import apicache from 'apicache'
 const cache = apicache.middleware
 
 const middleware: Middleware = (req, res, next) => {
-  // return cache('5 minutes')
+  // cache('5 minutes')
   next()
 }
 

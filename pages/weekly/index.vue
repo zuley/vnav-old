@@ -5,7 +5,7 @@ import { getWeeklyList } from '~/api/weekly'
 const title = '前端周刊'
 const desc = '每周一期优秀前端技术文章推荐，让每一个前端 er 可以快速学习。'
 const opt = useOptions()
-useMeta({
+useHead({
   title: `${title}-${opt.get('site-name')}-${opt.get('site-subtitle')}`,
   meta: [
     { name: 'description', content: desc },
