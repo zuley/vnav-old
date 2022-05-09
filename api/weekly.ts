@@ -27,5 +27,5 @@ export async function getWeeklyList () {
 }
 
 export async function getWeeklySingle (id: string) {
-  return await useAsyncData<{ data: Weekly }>(`weekly-${id}`, () => $fetch(urlConfig.weekly.list + id))
+  return await useAsyncData<{ data: Weekly }>(`weekly-${id}`, () => $fetch(urlConfig.weekly.single + id))
 }

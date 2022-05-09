@@ -9,9 +9,13 @@ export default {
     list: '/api/nav/list',
   },
   weekly: {
-    list: '/api/weekly/list'
+    list: '/api/weekly/list',
+    single: '/api/weekly/'
   },
   article: {
     list: '/api/article/list'
+  },
+  page: {
+    single: '/api/page/'
   }
 }

@@ -5,7 +5,3 @@ export const useInitOptions = async () => {
   const opt = res.data.value.data
   return opt
 }
-
-export function useTest () {
-  useState('test', () => '33333')
-}
