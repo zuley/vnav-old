@@ -10,7 +10,7 @@ const navList = navRes.data.value.data
 
 </script>
 <template>
-  <div class="m-partNav" :id="classify.slug">
+  <div class="m-partNav" :id="classify._id">
     <div class="head">
       <h2>{{ classify.name }}</h2>
       <div class="tips">{{ classify.desc }}</div>
