@@ -15,9 +15,10 @@ const initPartOffset = () => {
     partOffsetObj[item.id] = item.offsetTop
   })
 }
+// 查找最接近顶部的 Part
 const findClosePart = (top: number) => {
   // 保存最接近的 key
-  let partKey
+  let partKey = ''
   // 保存插值绝对值，默认为最大值
   let d_val = Number.MAX_VALUE;
   // 遍历对象
@@ -33,10 +34,11 @@ const findClosePart = (top: number) => {
   return partKey
 }
 // 页面滚动
+const emitter = useMitt()
 const handleScrollPage: EventListener = throttle((e: Event) => {
   const scrollTop = document.documentElement.scrollTop
   const closePart = findClosePart(scrollTop)
-  console.log(closePart)
+  emitter.emit('pageScroll', closePart)
 }, 100, 1)
 
 onMounted(() => {

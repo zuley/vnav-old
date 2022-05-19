@@ -31,7 +31,7 @@ useHead({
         <h1>{{ weekly.title }}</h1>
         <div class="meta">
           <div class="item"><span>{{ weekly.articles.length }}</span>篇文章</div>
-          <div class="item"><span>27633</span>人学习</div>
+          <div class="item"><span>xxxx</span>人学习</div>
         </div>
         <div class="desc">{{ weekly.desc }}</div>
         <div class="info">

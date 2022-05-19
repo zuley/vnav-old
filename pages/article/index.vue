@@ -23,7 +23,7 @@ const articles = articleRes.data.value.data
       <div class="tags g-wrap">
         <div class="tag" v-for="item in 6"><nuxt-link to="#">
           <span>#</span>vue
-          <div class="num">269篇推荐</div>
+          <div class="num">xxx篇推荐</div>
         </nuxt-link></div>
       </div>
     </div>
