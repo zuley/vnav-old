@@ -20,17 +20,20 @@ const articles = articleRes.data.value.data
       <div class="bg"><img src="https://images.uiiiuiii.com/wp-content/uploads/2022/02/bd-fm220226-5-6.jpg" alt=""></div>
       <h1>{{ title }}</h1>
       <div class="desc">{{ desc }}</div>
-      <div class="tags g-wrap">
+      <!-- <div class="tags g-wrap">
         <div class="tag" v-for="item in 6"><nuxt-link to="#">
           <span>#</span>vue
           <div class="num">xxx篇推荐</div>
         </nuxt-link></div>
-      </div>
+      </div> -->
     </div>
     <div class="box g-wrap">
       <div class="m-post" v-for="article in articles">
         <h2 class="title">
-          <nuxt-link to="#" class="tag">Vue</nuxt-link>
+          <nuxt-link
+            v-for="tag in article.tags"
+            :to="`/article/${tag}`" class="tag"
+          >{{ tag }}</nuxt-link>
           <a class="name" :href="article.link" target="_blank">{{ article.title }}</a>
         </h2>
         <div class="desc">{{ article.recommend }}</div>

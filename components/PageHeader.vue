@@ -38,7 +38,6 @@ const opt = useOptions()
     top: 10px;
     .icon {
       height: 34px;
-      width: 34px;
       border-radius: 5px;
       display: inline-block;
       margin-right: 10px;
