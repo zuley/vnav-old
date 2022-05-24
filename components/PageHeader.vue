@@ -9,11 +9,11 @@ const opt = useOptions()
 <template>
   <div class="m-header">
     <div class="logo">
-      <NuxtLink to="/">
+      <NuxtLink to="/" :title="opt.get('site-name')">
         <div class="icon">
           <img :src="opt.get('site-logo')" :alt="opt.get('site-name')">
         </div>
-        <h1>{{ opt.get('site-name') }}</h1>
+        <h1>{{ opt.get('site-name') }}-{{ opt.get('site-subtitle') }}</h1>
       </NuxtLink>
     </div>
     <ul class="menu">
@@ -52,7 +52,8 @@ const opt = useOptions()
       display: inline-block;
       font-weight: normal;
       vertical-align: middle;
-      font-size: 24px;
+      font-size: 18px;
+      color: #666;
     }
   }
   >.menu {

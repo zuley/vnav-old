@@ -28,6 +28,7 @@ const Nav = defineProps<{
     height: 100%;
     box-sizing: border-box;
     border-radius: 10px;
+    transition: all .3s ease;
     &:hover {
       background-color: #f2f2f2;
     }

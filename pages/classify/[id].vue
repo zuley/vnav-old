@@ -79,13 +79,14 @@ useHead({
   >.NavBox {
     position: relative;
     top: -70px;
-    display: flex;
+    display: grid;
     justify-content: space-between;
-    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fill, 200px);
+    grid-gap: 10px;
     background-color: #fff;
     border-radius: 10px;
     margin-bottom: 20px;
-    padding: 10px;
+    padding: 20px;
   }
 }
 </style>

@@ -58,10 +58,11 @@ const navList = navRes.data.value.data
     }
   }
   >.body {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 20px 10px;
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat(auto-fill, 200px);
+    grid-gap: 10px;
+    padding: 20px;
     .m-navlink {
       width: 200px;
     }
