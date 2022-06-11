@@ -52,14 +52,19 @@ onUnmounted(() => {
   document.removeEventListener('scroll', handleScrollPage)
 })
 
-const NavList = await useClassify()
+const classifyCms = useClassify()
+const { data: NavList } = await classifyCms.readByQuery({
+  limit: 20,
+  page: 1
+})
+
 </script>
 <template>
   <div class="p-home">
     <div class="m-main g-wrap">
-      <Anchor />
+      <Anchor :navList="NavList" />
       <div class="box">
-        <PartNav v-for="item in NavList" :key="item._id" :classify="item" />
+        <PartNav v-for="item in NavList" :key="item.id" :classify="item" />
       </div>
     </div>
   </div>

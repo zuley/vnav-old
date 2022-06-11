@@ -1,7 +1,11 @@
 import { getOptions } from "~~/api/global";
 
 export const useInitOptions = async () => {
-  const res = await getOptions()
-  const opt = res.data.value.data
-  return opt
+  const setCms = useSetting()
+  const res = await setCms.readByQuery({ limit: 20 })
+  const opt = res.data
+  return opt.map(el => {
+    el.value = el.value || el.value_pic
+    return el
+  })
 }

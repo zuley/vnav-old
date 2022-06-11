@@ -1,8 +1,18 @@
 <script lang="ts" setup>
 import { getPageSingle } from '~/api/page'
-const pageId = useRoute().params.id as string
-const pageRes = await getPageSingle(pageId)
-const page = pageRes.data.value.data
+const slug = useRoute().params.id as string
+
+const pageCms = usePage()
+const page = await pageCms.readByQuery({
+  filter: {
+    _or: [
+      { slug },
+      !isNaN(+slug) ? { id: slug } : {}
+    ]
+  }
+}).then(res => {
+  return res.data[0]
+})
 
 const opt = useOptions()
 useHead({

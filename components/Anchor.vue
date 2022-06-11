@@ -1,9 +1,17 @@
 <script lang="ts" setup>
-import { Classify } from '~~/api/nav';
 
-const NavList = await useClassify()
-const handleNav = (item: Classify) => {
-  const dom: any = document.querySelector(`#js-${item._id}`)
+import { PartialItem } from '@directus/sdk';
+import { Classify } from '~~/composables/useCms';
+
+
+const Props = defineProps<{
+  navList: PartialItem<Classify>[]
+}>()
+
+const NavList = Props.navList
+
+const handleNav = (item: PartialItem<Classify>) => {
+  const dom: any = document.querySelector(`#js-${item.id}`)
   window.scrollTo({
     top: dom.offsetTop - 20,
     behavior: 'smooth'
@@ -25,7 +33,7 @@ onMounted(() => {
     <ul>
       <li
         v-for="item in NavList" @click="handleNav(item)"
-        :class="{ active: actAnchor === `js-${item._id}` }"
+        :class="{ active: actAnchor === `js-${item.id}` }"
       >{{ item.name }}</li>
     </ul>
   </div>

@@ -1,29 +1,39 @@
 <script setup lang="ts">
-import { Classify, getNav } from '~/api/nav';
+import { PartialItem } from '@directus/sdk';
+import { Classify, useThumbnail } from '~~/composables/useCms';
+
 
 const Props = defineProps<{
-  classify: Classify
+  classify: PartialItem<Classify>
 }>()
 
-const navRes = await getNav(Props.classify._id)
-const navList = navRes.data.value.data
+const navCms = useNav()
+
+let { data: navList } = await navCms.readByQuery({
+  limit: 20,
+  page: 1,
+  filter: {
+    classify: Props.classify.id
+  },
+})
+const fileHost = useFileHost()
 
 </script>
 <template>
-  <div class="m-partNav" :id="`js-${classify._id}`">
+  <div class="m-partNav" :id="`js-${Props.classify.id}`">
     <div class="head">
-      <h2>{{ classify.name }}</h2>
-      <div class="tips">{{ classify.desc }}</div>
-      <nuxt-link class="more" :to="`/classify/${classify.slug}`">更多</nuxt-link>
+      <h2>{{ Props.classify.name }}</h2>
+      <div class="tips">{{ Props.classify.desc }}</div>
+      <nuxt-link class="more" :to="`/classify/${Props.classify.slug}`">更多</nuxt-link>
     </div>
     <div class="body">
       <PartNavLink
         v-for="item in navList"
-        :key="item._id"
+        :key="item.id"
         :title="item.name"
         :desc="item.desc"
         :url="item.url"
-        :icon="item.icon"
+        :icon="item.icon ? useThumbnail(item.icon) : ''"
       />
     </div>
   </div>

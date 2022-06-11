@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { getMenus } from '~~/api/global';
-
+import { useThumbnail } from '~~/composables/useCms';
 const menuRes = await getMenus()
 const menuList = menuRes.data.value.data
 
@@ -11,7 +11,7 @@ const opt = useOptions()
     <div class="logo">
       <NuxtLink to="/" :title="opt.get('site-name')">
         <div class="icon">
-          <img :src="opt.get('site-logo')" :alt="opt.get('site-name')">
+          <img :src="useThumbnail(opt.get('site-logo'))" :alt="opt.get('site-name')">
         </div>
         <h1>{{ opt.get('site-name') }}-{{ opt.get('site-subtitle') }}</h1>
       </NuxtLink>
