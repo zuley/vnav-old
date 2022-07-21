@@ -1,4 +1,5 @@
 import { Directus } from '@directus/sdk';
+import baseConfig from '~~/config/base.config';
 
 export type Setting = {
   id: number
@@ -70,9 +71,8 @@ type MyCollections = {
   page: Page
   weekly: Weekly
 };
-const host = 'http://101.33.224.203:8056'
-const directus = new Directus<MyCollections>(host);
-
+const host = baseConfig.cmsURL
+const directus = new Directus<MyCollections>(baseConfig.cmsURL);
 export default directus
 
 export const useClassify = () => directus.items('classify')

@@ -8,9 +8,4 @@ export default defineNuxtConfig({
   css: [
     '@/assets/scss/global.scss'
   ],
-  // 暂时解决问题，后续官方修复后移除
-  // components: {
-  //   global: true,
-  //   dirs: ['~/components']
-  // }
 })
