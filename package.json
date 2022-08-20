@@ -3,14 +3,18 @@
   "scripts": {
     "dev": "nuxi dev",
     "build": "nuxi build",
+    "up": "nuxi upgrade -f",
     "start": "HOST=0.0.0.0 node .output/server/index.mjs"
   },
   "devDependencies": {
-    "nuxt": "npm:nuxt3@latest"
+    "@nuxtjs/tailwindcss": "^5.3.2",
+    "autoprefixer": "^10.4.8",
+    "nuxt": "^3.0.0-rc.8",
+    "postcss": "^8.4.16",
+    "tailwindcss": "^3.1.8"
   },
   "dependencies": {
     "@directus/sdk": "^9.12.2",
-    "ant-design-vue": "^2.2.8",
     "apicache": "^1.6.3",
     "dayjs": "^1.11.0",
     "mitt": "^3.0.0",
