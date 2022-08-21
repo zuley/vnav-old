@@ -61,9 +61,9 @@ const { data: NavList } = await classifyCms.readByQuery({
 </script>
 <template>
   <div class="p-home">
-    <div class="m-main g-wrap">
-      <Anchor :navList="NavList" />
-      <div class="box">
+    <div class="w-full flex">
+      <div><Anchor :navList="NavList" /></div>
+      <div class="flex-1 p-3">
         <PartNav v-for="item in NavList" :key="item.id" :classify="item" />
       </div>
     </div>

@@ -29,36 +29,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="m-anchor">
+  <div class="w-48 p-3 sticky top-20">
     <ul>
       <li
+        class="px-4 py-3 mb-2 text-sm text-left flex gap-2 items-center rounded-md transition-colors duration-150 ease-in-out 
+        shadow bg-white"
         v-for="item in NavList" @click="handleNav(item)"
-        :class="{ active: actAnchor === `js-${item.id}` }"
+        :class="{ 'bg-red-50': actAnchor === `js-${item.id}` }"
       >{{ item.name }}</li>
     </ul>
   </div>
 </template>
-
-<style lang="scss">
-.m-anchor {
-  position: sticky;
-  top: 20px;
-  width: 100px;
-  ul {
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 10px 0;
-    li {
-      line-height: 30px;
-      padding: 0 20px;
-      cursor: pointer;
-      transition: color .3s ease;
-      color: #666;
-      &.active {
-        background-color: #f84a442f;
-        color: #333;
-      }
-    }
-  }
-}
-</style>
