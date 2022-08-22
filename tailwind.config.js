@@ -13,5 +13,5 @@ module.exports = {
   },
   plugins: [],
   // 开启深色模式
-  darkMode: 'media'
+  darkMode: 'class'
 }
