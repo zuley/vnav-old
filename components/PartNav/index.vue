@@ -20,13 +20,13 @@ const fileHost = useFileHost()
 
 </script>
 <template>
-  <div class="m-partNav" :id="`js-${Props.classify.id}`">
-    <div class="head">
-      <h2>{{ Props.classify.name }}</h2>
-      <div class="tips">{{ Props.classify.desc }}</div>
+  <div class="mb-4" :id="`js-${Props.classify.id}`">
+    <div class="flex items-center">
+      <h2 class="text-3xl">{{ Props.classify.name }}</h2>
+      <div class="flex-1 ml-3">{{ Props.classify.desc }}</div>
       <nuxt-link class="more" :to="`/classify/${Props.classify.slug}`">更多</nuxt-link>
     </div>
-    <div class="body">
+    <div class="grid grid-cols-6 gap-x-3 gap-y-3">
       <PartNavLink
         v-for="item in navList"
         :key="item.id"

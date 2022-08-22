@@ -7,9 +7,11 @@ const Nav = defineProps<{
 }>()
 </script>
 <template>
-  <div class="m-navlink">
-    <a :href="url" target="_blank">
-      <div class="icon"><img :src="icon" :alt="title"></div>
+  <div class="bg-white rounded-md shadow">
+    <a class="block p-4" :href="url" target="_blank">
+      <div class="w-14 h-14 border flex items-center justify-center rounded-md p-3">
+        <div><img :src="icon" :alt="title"></div>
+      </div>
       <div class="box">
         <h3>{{ title }}</h3>
         <div class="desc">{{ desc }}</div>
