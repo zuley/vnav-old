@@ -1,25 +1,19 @@
-type ThemeDict = 'light' | 'dark'
-const theme = ref<ThemeDict>('light')
+import { useTheme, ThemeDict } from "./states"
 
-if ((localStorage.getItem('theme') && localStorage.getItem('theme') === 'dark') || window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  document.documentElement.classList.add('dark')
-  theme.value = 'dark'
-} else {
-  document.documentElement.classList.remove('dark')
-}
 
 export default function () {
+  const theme = useTheme()
   return {
-    theme,
     toggle (type ?: ThemeDict) {
-      if (!type && theme.value === 'light') {
-        type = 'dark'
-      } else if (!type && theme.value === 'dark') {
-        type = 'light'
+      if (type) {
+        theme.value = type
+      } else {
+        theme.value = theme.value === 'dark' ? 'light' : 'dark'
       }
-      // localStorage.setItem('theme', type)
-      type === 'dark' && document.documentElement.classList.add('dark')
-      type === 'light' && document.documentElement.classList.remove('dark')
+    
+      theme.value === 'dark' && document.documentElement.classList.add('dark')
+      theme.value === 'light' && document.documentElement.classList.remove('dark')
+      localStorage.setItem('theme', theme.value)
     }
   }
 }
