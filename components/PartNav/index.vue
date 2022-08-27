@@ -20,8 +20,8 @@ const fileHost = useFileHost()
 
 </script>
 <template>
-  <div class="mb-4" :id="`js-${Props.classify.id}`">
-    <div class="flex items-center">
+  <div class="mb-6" :id="`js-${Props.classify.id}`">
+    <div class="flex items-center mb-3 dark:text-gray-500">
       <h2 class="text-3xl">{{ Props.classify.name }}</h2>
       <div class="flex-1 ml-3">{{ Props.classify.desc }}</div>
       <nuxt-link class="more" :to="`/classify/${Props.classify.slug}`">更多</nuxt-link>

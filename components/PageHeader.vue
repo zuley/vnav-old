@@ -9,19 +9,19 @@ const opt = useOptions()
 const dark = useDarkMode()
 </script>
 <template>
-  <div class="bg-white shadow dark:bg-slate-700 w-full sticky top-0 z-50 bg-opacity-80 backdrop-filter backdrop-blur-[12px] border-none">
+  <div class="bg-white shadow dark:bg-slate-900 w-full sticky top-0 z-50 bg-opacity-80 backdrop-filter backdrop-blur-[12px] border-none">
     <div class="flex items-center gap-4 justify-between w-full container mx-auto px-4 py-2 h-14">
       <NuxtLink class="flex items-center" to="/" :title="opt.get('site-name')">
         <div class="h-8 pr-4">
           <img class="h-full" :src="useThumbnail(opt.get('site-logo'))" :alt="opt.get('site-name')">
         </div>
-        <h1 class="dark:text-slate-50">{{ opt.get('site-name') }}-{{ opt.get('site-subtitle') }}</h1>
+        <h1 class="dark:text-slate-200">{{ opt.get('site-name') }}-{{ opt.get('site-subtitle') }}</h1>
       </NuxtLink>
       <ul class="flex gap-4">
         <li
           class=""
         v-for="item in menuList" :key="item.name">
-          <NuxtLink class="dark:text-slate-50" :to="item.url">{{ item.name }}</NuxtLink>
+          <NuxtLink class="dark:text-slate-200" :to="item.url">{{ item.name }}</NuxtLink>
         </li>
         <li @click="() => dark.toggle()">白天</li>
       </ul>

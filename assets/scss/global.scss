@@ -1,40 +1,14 @@
-// * {
-//   padding: 0; margin: 0; list-style: none;
-//   text-decoration: none;
-// }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-// html, body {
-//   background-color: #f2f2f2;
-//   font-size: 12px; font-weight: normal;
-//   font-family: PingFang SC;
-//   line-height: 17px;
-//   color: #000;
-// }
-// .g-wrap {
-//   max-width: 1280px;
-//   margin: 0 auto;
-// }
-
-// body {
-//   /** 全局 */
-//   // 主题色
-//   --global-theme-color: #f00;
-//   // 高亮色
-//   --global-highlight-color: #f00;
-//   // 标题颜色
-//   --global-title-color: #333;
-//   // 正文颜色
-//   --global-text-color: #666;
-//   // 辅助颜色
-//   --global-aux-color: #999;
-//   // 边框颜色
-//   --global-boder-color: #eee;
-//   /** 页面 */
-//   // 页面背景色
-//   --page-bg-color: #f2f2f2;
-//   /** 模块 */
-//   // 模块背景色
-//   --module-bg-color: #fff;
-//   // 模块圆角
-//   --module-border-radius: 10px;
-// }
+@layer utilities {
+  @variants dark {
+    .xxx {
+      filter: none;
+    }
+    .filter-grayscale {
+      filter: grayscale(100%);
+    }
+  }
+}

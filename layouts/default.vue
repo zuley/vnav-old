@@ -4,7 +4,7 @@ const opt = await useInitOptions()
 useState('options', () => opt)
 </script>
 <template>
-  <div class="l-default bg-gray-100 dark:bg-secondary-black">
+  <div class="l-default bg-gray-100 dark:bg-black">
     <PageHeader />
       <slot />
     <PageFooter />

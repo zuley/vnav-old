@@ -11,7 +11,7 @@ footerCode && onMounted(() => {
 const beianInfo = opt.get('site-beian')
 </script>
 <template>
-  <div class="m-footer">
+  <div class="m-footer text-gray-600 dark:bg-gray-900 dark:text-gray-700">
     <p>不勤勉的人生便是罪过，无技艺的勤劳便是粗野。</p>
     <div class="info">
       Copyright @THUNLP 2022
@@ -26,6 +26,6 @@ const beianInfo = opt.get('site-beian')
   padding: 20px 0;
   text-align: center;
   line-height: 20px;
-  color: #999;
+  font-size: 12px;
 }
 </style>

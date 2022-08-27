@@ -10,7 +10,7 @@ useHead({
 // 存储 part 块距离顶部的值
 const partOffsetObj = reactive<{ [prop in string]: number }>({})
 const initPartOffset = () => {
-  const nodeList = document.querySelectorAll('.m-partNav')
+  const nodeList = document.querySelectorAll('.js-partNav')
   nodeList.forEach((item: HTMLElement) => {
     partOffsetObj[item.id] = item.offsetTop
   })
@@ -64,7 +64,7 @@ const { data: NavList } = await classifyCms.readByQuery({
     <div class="w-full flex">
       <div><Anchor :navList="NavList" /></div>
       <div class="flex-1 p-3">
-        <PartNav v-for="item in NavList" :key="item.id" :classify="item" />
+        <PartNav class="js-partNav" v-for="item in NavList" :key="item.id" :classify="item" />
       </div>
     </div>
   </div>
