@@ -1,11 +1,15 @@
 <script lang="ts" setup>
-import { getClassifyBySlug, getNav } from '~~/api/nav';
 const route = useRoute()
-let classifyRes = await getClassifyBySlug(route.params.id as string)
-const classify = classifyRes.data.value.data[0]
-const navRes = await getNav(classify._id)
-const navList = navRes.data.value.data
-
+const classifyCMS = useClassify()
+const navCMS = useNav()
+const classify = await classifyCMS.readOne(route.params.id as string)
+const { data: navList } = await navCMS.readByQuery({ limit: 20, page: 1, 
+  filter: {
+    "classify": {
+      "_eq": classify.id
+    }
+  }
+})
 const opt = useOptions()
 useHead({
   title: `${classify.name}-${opt.get('site-name')}-${opt.get('site-subtitle')}`,
@@ -26,11 +30,11 @@ useHead({
     <div class="NavBox g-wrap">
       <PartNavLink
         v-for="item in navList"
-        :key="item._id"
+        :key="item.id"
         :title="item.name"
         :desc="item.desc"
         :url="item.url"
-        :icon="item.icon"
+        :icon="useThumbnail(item.icon)"
       />
     </div>
   </div>

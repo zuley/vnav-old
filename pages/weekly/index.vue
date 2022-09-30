@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import dayjs from 'dayjs'
-import { getWeeklyList } from '~/api/weekly'
 
 const title = '前端周刊'
 const desc = '每周一期优秀前端技术文章推荐，让每一个前端 er 可以快速学习。'
@@ -12,14 +11,18 @@ useHead({
     { name: 'keywords', content: '前端周刊,前端技术文章推荐,技术文章' }
   ]
 })
-const weekRes = await getWeeklyList()
-const weeklys = weekRes.data.value.data
+const weekCMS = useWeekly()
+const { data: weeklys } = await weekCMS.readByQuery({
+  limit: 20,
+  page: 1
+})
+console.log('weekly', weeklys)
 </script>
 <template>
   <div class="p-weekly">
     <div class="header">
       <div class="bg">
-        <img :src="weeklys[0].thumb" alt="前端技术">
+        <img :src="weeklys[0].pic" alt="前端技术">
       </div>
       <h1>{{ title }}</h1>
       <p>{{ desc }}</p>
@@ -27,17 +30,17 @@ const weeklys = weekRes.data.value.data
     <div class="box g-wrap">
       <div class="wrap" v-for="weekly in weeklys">
         <div class="m-weeklyItem">
-          <h2><nuxt-link :to="`/weekly/${weekly._id}`">{{ weekly.title }}</nuxt-link></h2>
+          <h2><nuxt-link :to="`/weekly/${weekly.id}`">{{ weekly.title }}</nuxt-link></h2>
           <ul class="list">
             <li v-for="article in weekly.articles">
-              <a :href="article.link" target="_blank">{{ article.title }}</a>
+              <a :href="article.url" target="_blank">{{ article.title }}</a>
             </li>
           </ul>
-          <div class="thumb"><nuxt-link :to="`/weekly/${weekly._id}`"><img :src="weekly.thumb" :alt="weekly.title"></nuxt-link></div>
+          <div class="thumb"><nuxt-link :to="`/weekly/${weekly.id}`"><img :src="weekly.pic" :alt="weekly.title"></nuxt-link></div>
           <div class="footer">
             <span>文章数量：{{ weekly.articles.length }} 篇</span>
-            <span>发布时间：{{ dayjs(weekly._createTime).fromNow() }}</span>
-            <nuxt-link class="more" :to="`/weekly/${weekly._id}`">查看详细 👉🏻</nuxt-link>
+            <!-- <span>发布时间：{{ dayjs(weekly.id).fromNow() }}</span> -->
+            <nuxt-link class="more" :to="`/weekly/${weekly.id}`">查看详细 👉🏻</nuxt-link>
           </div>
         </div>
       </div>

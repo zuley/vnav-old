@@ -5,6 +5,7 @@ export default function () {
   const theme = useTheme()
   return {
     toggle (type ?: ThemeDict) {
+      console.log('///', type)
       if (type) {
         theme.value = type
       } else {

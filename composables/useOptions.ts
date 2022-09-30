@@ -1,4 +1,11 @@
-import { OptionData } from '~~/api/global';
+export interface OptionData {
+  _id: string
+  code: string
+  name: string
+  value?: string
+  'value-pic'?: string
+  'value-json'?: string
+}
 
 type OptionCode = 'site-name'
   | 'site-subtitle'

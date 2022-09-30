@@ -1,5 +1,3 @@
-import { getOptions } from "~~/api/global";
-
 export const useInitOptions = async () => {
   const setCms = useSetting()
   const res = await setCms.readByQuery({ limit: 20 })

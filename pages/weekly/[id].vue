@@ -1,20 +1,18 @@
 <script lang="ts" setup>
 import dayjs from 'dayjs'
-import { getWeeklySingle, getWeeklyList } from '~/api/weekly'
 
-const weeklyId = useRoute().params.id
-const weeklyRes = await getWeeklySingle(weeklyId as string)
-const weekly = weeklyRes.data.value.data
+const weeklyId = useRoute().params.id as string
 
-const weeklyListRes = await getWeeklyList()
-const weeklys = weeklyListRes.data.value.data
+const weekCMS = useWeekly()
+const weekly = await weekCMS.readOne(weeklyId)
 
+const { data: weeklys } = await weekCMS.readByQuery({ limit: 20, page: 1 })
 const opt = useOptions()
 useHead({
   title: `${weekly.title}-${opt.get('site-name')}`,
   meta: [
-    { name: 'description', content: weekly.desc },
-    { name: 'keywords', content: weekly.desc }
+    { name: 'description', content: weekly.title },
+    { name: 'keywords', content: weekly.title }
   ]
 })
 
@@ -23,19 +21,19 @@ useHead({
 <template>
   <div class="p-weeklySingle">
     <!-- 背景 -->
-    <div class="bg"><img :src="weekly.thumb" :alt="weekly.title"></div>
+    <div class="bg"><img :src="weekly.pic" :alt="weekly.title"></div>
     <!-- 头部卡片 -->
     <div class="header g-wrap">
-      <div class="thumb"><img :src="weekly.thumb" :alt="weekly.title"></div>
+      <div class="thumb"><img :src="weekly.pic" :alt="weekly.title"></div>
       <div class="box">
         <h1>{{ weekly.title }}</h1>
         <div class="meta">
           <div class="item"><span>{{ weekly.articles.length }}</span>篇文章</div>
           <div class="item"><span>xxxx</span>人学习</div>
         </div>
-        <div class="desc">{{ weekly.desc }}</div>
+        <div class="desc">{{ weekly.pic }}</div>
         <div class="info">
-          <div class="item">{{ dayjs(weekly._createTime).fromNow() }} 更新</div>
+          <!-- <div class="item">{{ dayjs(weekly._createTime).fromNow() }} 更新</div> -->
         </div>
       </div>
     </div>
@@ -49,20 +47,20 @@ useHead({
               :to="{ path: '/weekly', query: { tag: tag } }"
               class="tag"
             >{{ tag }}</nuxt-link>
-            <a class="name" :href="article.link" target="_blank">{{ article.title }}</a>
+            <a class="name" :href="article.url" target="_blank">{{ article.title }}</a>
           </h2>
           <div class="desc">{{ article.recommend }}</div>
           <div class="meta">
             <div class="item">来源：{{ article.source }}</div>
-            <div class="item">推荐时间：{{ dayjs(article._createTime).fromNow() }}</div>
+            <!-- <div class="item">推荐时间：{{ dayjs(article._createTime).fromNow() }}</div> -->
           </div>
         </div>
       </div>
       <div class="news">
         <h3>最新周刊</h3>
         <div class="item" v-for="weekly in weeklys">
-          <nuxt-link :to="`/article/${weekly._id}`">
-            <div class="thumb"><img :src="weekly.thumb" :alt="weekly.title"></div>
+          <nuxt-link :to="`/article/${weekly}`">
+            <div class="thumb"><img :src="weekly.pic" :alt="weekly.title"></div>
             <h4>{{ weekly.title }}</h4>
           </nuxt-link>
         </div>

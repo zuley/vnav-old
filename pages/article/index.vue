@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { getArticleList } from '~/api/article'
 import dayjs from 'dayjs'
 const title = '前端技术'
 const desc = '汇集各大社区优秀技术文章推荐，助力前端 er 快速学习。'
@@ -11,8 +10,8 @@ useHead({
     { name: 'keywords', content: '前端技术,前端技术文章推荐,技术文章' }
   ]
 })
-const articleRes = await getArticleList()
-const articles = articleRes.data.value.data
+const articlesCMS = useArticle_post()
+const { data: articles } = await articlesCMS.readByQuery({ limit: 20, page: 1 })
 </script>
 <template>
   <div class="p-articleList">
@@ -34,12 +33,12 @@ const articles = articleRes.data.value.data
             v-for="tag in article.tags"
             :to="`/article/${tag}`" class="tag"
           >{{ tag }}</nuxt-link>
-          <a class="name" :href="article.link" target="_blank">{{ article.title }}</a>
+          <a class="name" :href="article.url" target="_blank">{{ article.title }}</a>
         </h2>
         <div class="desc">{{ article.recommend }}</div>
         <div class="meta">
           <div class="item">来源：{{ article.source }}</div>
-          <div class="item">推荐时间：{{ dayjs(article._createTime).fromNow() }}</div>
+          <!-- <div class="item">推荐时间：{{ dayjs(article._createTime).fromNow() }}</div> -->
         </div>
       </div>
     </div>
