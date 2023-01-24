@@ -2,8 +2,8 @@
 const route = useRoute()
 const classifyCMS = useClassify()
 const navCMS = useNav()
-const classify = await classifyCMS.readOne(route.params.id as string)
-const { data: navList } = await navCMS.readByQuery({ limit: 20, page: 1, 
+const classify = await classifyCMS.getItemBySlug(route.params.id as string)
+const navList = await navCMS.getItems({ limit: 20, page: 1, 
   filter: {
     "classify": {
       "_eq": classify.id
@@ -23,7 +23,7 @@ useHead({
 <template>
   <div class="p-classifySingle">
     <div class="header">
-      <div class="bg"><i :style="`background-image: url(${classify.icon}});`"></i></div>
+      <div class="bg"><i :style="`background-image: url(${useThumbnail(classify.icon)}});`"></i></div>
       <h1>{{ classify.name }}</h1>
       <p>{{ classify.desc }}</p>
     </div>

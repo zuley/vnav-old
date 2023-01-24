@@ -4,9 +4,9 @@ import dayjs from 'dayjs'
 const weeklyId = useRoute().params.id as string
 
 const weekCMS = useWeekly()
-const weekly = await weekCMS.readOne(weeklyId)
+const weekly = await weekCMS.getItemById(weeklyId)
 
-const { data: weeklys } = await weekCMS.readByQuery({ limit: 20, page: 1 })
+const weeklys = await weekCMS.getItems({ limit: 20, page: 1 })
 const opt = useOptions()
 useHead({
   title: `${weekly.title}-${opt.get('site-name')}`,

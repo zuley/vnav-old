@@ -1,23 +1,21 @@
 {
   "private": true,
   "scripts": {
-    "dev": "nuxi dev",
-    "build": "nuxi build",
-    "up": "nuxi upgrade -f",
-    "start": "HOST=0.0.0.0 node .output/server/index.mjs"
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^5.3.2",
-    "autoprefixer": "^10.4.8",
-    "nuxt": "^3.0.0-rc.8",
-    "postcss": "^8.4.16",
-    "tailwindcss": "^3.1.8"
+    "nuxt": "^3.0.0"
   },
   "dependencies": {
-    "@directus/sdk": "^9.12.2",
-    "apicache": "^1.6.3",
-    "dayjs": "^1.11.0",
+    "@directus/sdk": "^10.3.1",
+    "@nuxtjs/tailwindcss": "^6.2.0",
+    "dayjs": "^1.11.7",
     "mitt": "^3.0.0",
-    "sass": "^1.49.0"
+    "nuxt-directus": "^3.2.2",
+    "sass": "^1.57.1"
   }
 }

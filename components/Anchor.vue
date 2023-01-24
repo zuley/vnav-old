@@ -1,16 +1,13 @@
 <script lang="ts" setup>
-
-import { PartialItem } from '@directus/sdk';
 import { Classify } from '~~/composables/useCms';
 
-
 const Props = defineProps<{
-  navList: PartialItem<Classify>[]
+  navList: Classify[]
 }>()
 
 const NavList = Props.navList
 
-const handleNav = (item: PartialItem<Classify>) => {
+const handleNav = (item: Classify) => {
   const dom: any = document.querySelector(`#js-${item.id}`)
   window.scrollTo({
     top: dom.offsetTop - 70,
@@ -22,8 +19,10 @@ const handleNav = (item: PartialItem<Classify>) => {
 const emitter = useMitt()
 const actAnchor = ref('')
 onMounted(() => {
-  emitter.on('pageScroll', (e: string) => {
-    actAnchor.value = e
+  emitter.on('pageScroll', (e) => {
+    if (typeof e === 'string') {
+      actAnchor.value = e
+    }
   })
   emitter.emit('pageScroll', 'js-1')
 })

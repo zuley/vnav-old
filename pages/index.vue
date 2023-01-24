@@ -11,8 +11,8 @@ useHead({
 const partOffsetObj = reactive<{ [prop in string]: number }>({})
 const initPartOffset = () => {
   const nodeList = document.querySelectorAll('.js-partNav')
-  nodeList.forEach((item: HTMLElement) => {
-    partOffsetObj[item.id] = item.offsetTop
+  nodeList.forEach((item) => {
+    partOffsetObj[item.id] = (item as HTMLElement).offsetTop
   })
 }
 // 查找最接近顶部的 Part
@@ -51,12 +51,8 @@ onUnmounted(() => {
   console.log('页面卸载')
   document.removeEventListener('scroll', handleScrollPage)
 })
-
-const classifyCms = useClassify()
-const { data: NavList } = await classifyCms.readByQuery({
-  limit: 20,
-  page: 1
-})
+const classify = useClassify()
+const NavList = await classify.getItems()
 
 </script>
 <template>

@@ -1,8 +1,8 @@
-import { Directus } from '@directus/sdk';
+import { DirectusItemRequest, DirectusQueryParams } from 'nuxt-directus/dist/runtime/types';
 import baseConfig from '~~/config/base.config';
 
 export type Setting = {
-  id: number
+  id?: string | number
   name: string
   code: string
   value: string
@@ -10,7 +10,7 @@ export type Setting = {
 }
 
 export type Menu = {
-  id: number
+  id?: string | number
   sort: number
   name: string
   url: string
@@ -19,7 +19,7 @@ export type Menu = {
 }
 
 export type Classify = {
-  id: number
+  id?: string | number
   sort: number
   name: string
   desc: string
@@ -28,7 +28,7 @@ export type Classify = {
 }
 
 export type Nav = {
-  id: number
+  id?: string | number
   sort: number
   name: string
   url: string
@@ -38,7 +38,7 @@ export type Nav = {
 }
 
 export type Article_post = {
-  id: number
+  id?: string | number
   title: string
   source: string
   recommend: string
@@ -47,7 +47,7 @@ export type Article_post = {
 }
 
 export type Page = {
-  id: number
+  id?: string | number
   title: string
   desc: string
   content: string
@@ -56,7 +56,7 @@ export type Page = {
 }
 
 export type Weekly = {
-  id: number
+  id?: string | number
   title: string
   pic: string
   articles: Article_post[]
@@ -71,18 +71,57 @@ type MyCollections = {
   page: Page
   weekly: Weekly
 };
+
+// 初始化 Item 函数
+function initDirectusItems<T> (collection: string) {
+  return () => {
+    const { getItems, getItemById } = useDirectusItems()
+    return {
+      // 获取列表
+      getItems (data?: DirectusQueryParams) {
+        const params = { collection, params: data || {} }
+        return getItems<T[]>(params)
+      },
+      // 通过ID获取 Item
+      getItemById (data: Omit<DirectusItemRequest, 'collection'> | string) {
+        if (typeof data === 'string') {
+          return getItemById<T>({ collection, id: data })
+        }
+        return getItemById<T>(Object.assign({ collection }, data))
+      },
+      // 通过 slug 获取 Item
+      getItemBySlug (slug: string, data?: Pick<DirectusQueryParams, 'fields'>) {
+        const params = Object.assign({
+          filter: {
+            "slug": {
+              "_eq": slug
+            }
+          }
+        }, data)
+        return getItems<T[]>({
+          collection,
+          params
+        }).then(items => items[0])
+      }
+    }
+  }
+}
+// 导航
+export const useNav = initDirectusItems<Nav>('nav')
+// 设置
+export const useSetting = initDirectusItems<Setting>('setting')
+// 菜单
+export const useMenu = initDirectusItems<Menu>('menu')
+// 文章
+export const useArticle_post = initDirectusItems<Article_post>('article_post')
+// 单页
+export const usePage = initDirectusItems<Page>('page')
+// 导航分类
+export const useClassify = initDirectusItems<Classify>('classify')
+// 周刊
+export const useWeekly = initDirectusItems<Weekly>('weekly')
+
 const host = baseConfig.cmsURL
-const directus = new Directus<MyCollections>(baseConfig.cmsURL);
-export default directus
-
-export const useClassify = () => directus.items('classify')
-export const useNav = () => directus.items('nav')
-export const useSetting = () => directus.items('setting')
-export const useMenu = () => directus.items('menu')
-export const useArticle_post = () => directus.items('article_post')
-export const usePage = () => directus.items('page')
-export const useWeekly = () => directus.items('weekly')
-
 export const useFileHost = () => host + '/assets/'
 
 type ThumbnailOption = {
@@ -93,6 +132,7 @@ type ThumbnailOption = {
   withoutEnlargement?: boolean
   format?: 'jpg' | 'png' | 'webp' | 'tiff'
 }
+// 将图片ID转换为真实图片路径
 export function useThumbnail (id: string, opt: ThumbnailOption = {}) {
   const queryStr = Object.entries(opt).reduce((all, item) => {
     return all += item[0] + '=' + item[1] + '&'

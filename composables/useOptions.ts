@@ -20,7 +20,7 @@ export default function () {
   const options = useState<OptionData[]>('options')
   function get (code: OptionCode) {
     const actItem = options.value.find(el => el.code === code) || { value: '' }
-    return actItem.value
+    return actItem.value as string
   }
   return {
     options,

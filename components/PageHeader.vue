@@ -1,10 +1,7 @@
-<script lang="ts" setup>
+z<script lang="ts" setup>
 import { useThumbnail, useMenu } from '~~/composables/useCms';
-const menuCMS = useMenu()
-const { data: menuList } = await menuCMS.readByQuery({
-  limit: 20,
-  page: 1
-})
+const menu = useMenu()
+const menuList = await menu.getItems({ limit: 20, page: 1 })
 const opt = useOptions()
 const dark = useDarkMode()
 
@@ -22,7 +19,7 @@ const dark = useDarkMode()
         <li
           class=""
         v-for="item in menuList" :key="item.name">
-          <NuxtLink class="dark:text-slate-200" :to="item.url" :target="item.target && '_blank'">{{ item.name }}</NuxtLink>
+          <NuxtLink class="dark:text-slate-200" :to="item.url" :target="'_blank'">{{ item.name }}</NuxtLink>
         </li>
         <li @click="() => dark.toggle()">白天</li>
       </ul>

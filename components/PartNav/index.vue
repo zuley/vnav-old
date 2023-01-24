@@ -1,21 +1,19 @@
 <script setup lang="ts">
-import { PartialItem } from '@directus/sdk';
 import { Classify, useThumbnail } from '~~/composables/useCms';
 
-
 const Props = defineProps<{
-  classify: PartialItem<Classify>
+  classify: Classify
 }>()
 
-const navCms = useNav()
-
-let { data: navList } = await navCms.readByQuery({
-  limit: 20,
+const Nav = useNav()
+const navList = await Nav.getItems({
   page: 1,
+  limit: 20,
   filter: {
     classify: Props.classify.id
-  },
+  }
 })
+
 const fileHost = useFileHost()
 
 </script>

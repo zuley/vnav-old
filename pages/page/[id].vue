@@ -1,17 +1,16 @@
 <script lang="ts" setup>
-import { getPageSingle } from '~/api/page'
 const slug = useRoute().params.id as string
 
 const pageCms = usePage()
-const page = await pageCms.readByQuery({
-  filter: {
-    _or: [
-      { slug },
-      !isNaN(+slug) ? { id: slug } : {}
-    ]
+const page = await pageCms.getItemById({
+  params: {
+    filter: {
+      _or: [
+        { slug },
+        !isNaN(+slug) ? { id: slug } : {}
+      ]
+    }
   }
-}).then(res => {
-  return res.data[0]
 })
 
 const opt = useOptions()

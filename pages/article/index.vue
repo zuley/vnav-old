@@ -11,7 +11,7 @@ useHead({
   ]
 })
 const articlesCMS = useArticle_post()
-const { data: articles } = await articlesCMS.readByQuery({ limit: 20, page: 1 })
+const articles = await articlesCMS.getItems({ limit: 20, page: 1 })
 </script>
 <template>
   <div class="p-articleList">
