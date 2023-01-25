@@ -6,7 +6,9 @@ export default defineNuxtConfig({
   ],
   modules: [
     'nuxt-directus',
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@nuxt/content',
+    '@nuxtjs/robots'
   ],
   directus: {
     url: 'http://101.33.224.203:8056'
