@@ -42,13 +42,11 @@ const handleScrollPage: EventListener = throttle((e: Event) => {
 }, 100, 1)
 
 onMounted(() => {
-  console.log('页面挂载')
   initPartOffset()
   document.addEventListener('scroll', handleScrollPage)
 })
 
 onUnmounted(() => {
-  console.log('页面卸载')
   document.removeEventListener('scroll', handleScrollPage)
 })
 const classify = useClassify()

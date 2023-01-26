@@ -62,16 +62,6 @@ export type Weekly = {
   articles: Article_post[]
 }
 
-type MyCollections = {
-	classify: Classify
-  nav: Nav
-  setting: Setting
-  menu: Menu,
-  article_post: Article_post
-  page: Page
-  weekly: Weekly
-};
-
 // 初始化 Item 函数
 function initDirectusItems<T> (collection: string) {
   return () => {

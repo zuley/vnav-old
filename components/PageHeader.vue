@@ -21,7 +21,9 @@ const dark = useDarkMode()
         v-for="item in menuList" :key="item.name">
           <NuxtLink class="dark:text-slate-200" :to="item.url" :target="'_blank'">{{ item.name }}</NuxtLink>
         </li>
-        <li @click="() => dark.toggle()">白天</li>
+        <li>
+          <SwitchAppearance></SwitchAppearance>
+        </li>
       </ul>
     </div>
   </div>

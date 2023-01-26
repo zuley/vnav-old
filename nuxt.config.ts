@@ -5,11 +5,14 @@ export default defineNuxtConfig({
     '@/assets/scss/global.scss'
   ],
   modules: [
+    '@nuxtjs/color-mode',
     'nuxt-directus',
     '@nuxtjs/tailwindcss',
     '@nuxt/content',
-    '@nuxtjs/robots'
   ],
+  colorMode: {
+    classSuffix: ''
+  },
   directus: {
     url: 'http://101.33.224.203:8056'
   }
