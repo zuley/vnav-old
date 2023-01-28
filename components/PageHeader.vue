@@ -3,7 +3,6 @@ import { useThumbnail, useMenu } from '~~/composables/useCms';
 const menu = useMenu()
 const menuList = await menu.getItems({ limit: 20, page: 1 })
 const opt = useOptions()
-const dark = useDarkMode()
 
 </script>
 <template>
