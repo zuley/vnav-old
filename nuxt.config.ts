@@ -15,5 +15,8 @@ export default defineNuxtConfig({
   },
   directus: {
     url: 'http://101.33.224.203:8056'
+  },
+  runtimeConfig: {
+    siteBase: ''
   }
 })

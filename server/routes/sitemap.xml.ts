@@ -1,16 +1,12 @@
-import cms from "../utils/cms"
-import { SitemapStream } from 'sitemap'
+import { SitemapIndexStream } from 'sitemap'
 
 export default defineEventHandler(async (event) => {
-  event.node.res.setHeader('Content-Type', 'application/xml')
-  const classify = cms.items('classify')
-  const smStream = new SitemapStream({ hostname: 'http://vnav.link/' })
-  
-  const { data: classifyList } = await classify.readByQuery()
-
-  classifyList?.forEach(el => {
-    smStream.write({ url: `/classify/${el.slug}` })
+  const config = useRuntimeConfig()
+  const smStream = new SitemapIndexStream({
+    xslUrl: `${config.siteBase}/sitemap-index.xsl`
   })
+
+  smStream.write({ url: `${config.siteBase}/sitemap-classify.xml` })
 
   smStream.end()
   return smStream
